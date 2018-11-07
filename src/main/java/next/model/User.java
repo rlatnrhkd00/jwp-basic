@@ -28,6 +28,30 @@ public class User {
     public String getEmail() {
         return email;
     }
+    
+    public void update(User updateUser) {
+    	this.password=updateUser.getPassword();
+    	this.name=updateUser.getName();
+    	this.email=updateUser.getEmail();
+    }
+    
+    public boolean isSameUser(User user) {
+    	return userId.equals((user.getUserId()));
+    }
+    
+    @Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "User [userId = "+userId+",name="+name+",email"+email+"]";
+	}
+
+	public boolean matchPassword(String password) {
+    	if(password==null) {
+    		return false;		
+    	}else {
+    		return this.password.equals(password);
+    	}
+    }
 
     @Override
     public int hashCode() {
