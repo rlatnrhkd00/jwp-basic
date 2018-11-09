@@ -12,6 +12,11 @@
 <div class="container" id="main">
    <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default content-main">
+      	<c:if test ="${loginFailed}">
+      		<div class="alert alert-danger" role="alert"> 
+      			아이디 또는 비밀번호가 틀립니다.
+      		</div>
+      		</c:if>
           <form name="question" method="post" action="/user/login">
               <div class="form-group">
                   <label for="userId">사용자 아이디</label>
