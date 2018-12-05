@@ -18,10 +18,10 @@ public class AnswerDao {
 	        return jdbcTemplate.query(sql,(ResultSet rs)->{
 	      		return new Answer(rs.getLong("answerId"),rs.getString("writer"),rs.getString("contents"),rs.getTimestamp("createdDate"),rs.getLong("questionId"));
 	     	   
-	      	});
+	      	},questionId);
 	    }
 
-	    public Answer findById(String answerId) throws SQLException {
+	    public Answer findById(long answerId) throws SQLException {
 	    	 JdbcTemplate jdbcTemplate = new JdbcTemplate();
 	    	
 	          	String sql = "SELECT answerId, writer, contents, createdDate, questionId FROM ANSWERS WHERE answerId=?";

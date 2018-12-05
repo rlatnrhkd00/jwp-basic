@@ -21,7 +21,7 @@ public class QuestionDao {
 	      	});
 	    }
 
-	    public Question findById(String questionId) throws SQLException {
+	    public Question findById(Long questionId) throws SQLException {
 	    	 JdbcTemplate jdbcTemplate = new JdbcTemplate();
 	    	
 	          	String sql = "SELECT questionId, writer, title, contents, createdDate, countOfAnswer FROM QUESTIONS WHERE questionId=?";
