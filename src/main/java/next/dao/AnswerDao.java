@@ -29,4 +29,12 @@ public class AnswerDao {
 		      		return new Answer(rs.getLong("answerId"),rs.getString("writer"),rs.getString("contents"),rs.getTimestamp("createdDate"),rs.getLong("questionId"));},answerId);
 	          	
 	    }
+	    public void delete(Long answerId) {
+			JdbcTemplate jdbcTemplate =new JdbcTemplate();
+			
+			String sql ="DELETE FROM ANSWERS WHERE answerId=?";
+			jdbcTemplate.update(sql,answerId);
+		}
+
+
 }
