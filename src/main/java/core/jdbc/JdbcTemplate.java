@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import next.model.User;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 
 public class JdbcTemplate {
 	 
@@ -26,6 +26,22 @@ public class JdbcTemplate {
 				throw new DateAccessException(e);
 			} 
 	    }
+	  public void update(PreparedStatementCreator psc,KeyHolder holder) throws DateAccessException {
+	    	 
+	         try(Connection  con = ConnectionManager.getConnection())    {
+
+        		 PreparedStatement	 pstmt = psc.createPreparedStatement(con);
+	             pstmt.executeUpdate();
+	             
+	             ResultSet rs=pstmt.getGeneratedKeys();
+	             if(rs.next()) {
+	            	 holder.setId(rs.getLong(1));
+	             }
+	             rs.close();
+	         } catch (SQLException e) {
+				throw new DateAccessException(e);
+			} 
+	    }
 	  
 	  public void update(String sql,Object... parameters)throws DateAccessException {
 	    	 
@@ -35,9 +51,7 @@ public class JdbcTemplate {
 		public <T> List<T> query(String sql,PreparedStatementSetter pss,RowMapper<T> rm) throws DateAccessException{
 		  ResultSet rs = null;
 			try(Connection con= ConnectionManager.getConnection();
-					PreparedStatement pstmt = con.prepareStatement(sql);
-					
-					)    {
+					PreparedStatement pstmt = con.prepareStatement(sql)){
 
 				pss.setParameters(pstmt);
 				
@@ -58,7 +72,7 @@ public class JdbcTemplate {
 					} catch (SQLException e) {
 						throw new DateAccessException(e);
 					}
-				}
+				} 
 			}
 		}
 		public <T> List<T> query(String sql,RowMapper<T> rm,Object... parameters) throws DateAccessException{

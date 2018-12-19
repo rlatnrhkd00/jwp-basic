@@ -8,12 +8,13 @@ public class Answer {
 	private String contents;
 	private Date createDate;
 	private long answerId;
-	
-	public Answer(String writer,String contents) {
-		this(0,writer,contents,new Date(),0);
+	private int countOfAnswer;
+	public Answer(String writer,String contents,long questionId) {
+		this(0,writer,contents,new Date(),questionId);
 	}
 	
-	public Answer(long questionId,String writer,String contents,Date createDate,long answerId) {
+	
+	public Answer(long answerId,String writer,String contents,Date createDate,long questionId) {
 		this.questionId = questionId;
 		this.writer = writer;
 		this.contents = contents;
@@ -41,10 +42,19 @@ public class Answer {
 	public long getTimeFromCreatedDate() {
 		return this.createDate.getTime();
 	}
+	
 	public long getAnswerId() {
 		return answerId;
 	}
 
+	public int getCountOfAnswer() {
+		return countOfAnswer;
+	}
+	
+	public void setCountOfAnswer(int count) {
+		this.countOfAnswer=count;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime =31;
@@ -53,6 +63,9 @@ public class Answer {
 		result = prime*result+(int)(questionId^(questionId>>>32));
 		return result;
 	}
+	 public void update(Answer newAnswer) {
+	       this.contents = newAnswer.contents;
+	    }
 
 	@Override
 	public boolean equals(Object obj) {

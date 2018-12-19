@@ -6,7 +6,6 @@ import java.util.List;
 
 import core.jdbc.JdbcTemplate;
 import next.model.Question;
-import next.model.User;
 
 public class QuestionDao {
 	    @SuppressWarnings("unchecked")
@@ -43,4 +42,12 @@ public class QuestionDao {
 			String sql ="DELETE FROM QUESTIONS WHERE questionId=?";
 			jdbcTemplate.update(sql,questionId);
 		}
+		
+		public void update(Question question,Long questionId) {
+			JdbcTemplate jdbcTemplate = new JdbcTemplate();
+			
+			String sql = "UPDATE QUESTIONS set title = ?, contents = ? WHERE questionId = ?";
+	        jdbcTemplate.update(sql, question.getTitle(), question.getContents(), question.getQuestionId());
+		}
+		
 }

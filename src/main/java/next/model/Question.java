@@ -14,6 +14,8 @@ public class Question {
 		this(0,writer,title,contents,new Date(),0);
 	}
 	
+	
+	
 	public Question(long questionId,String writer,String title,String contents,Date createDate,int countOfAnswer) {
 		this.questionId = questionId;
 		this.writer = writer;
@@ -51,6 +53,11 @@ public class Question {
 		return countOfAnswer;
 	}
 
+	 public void update(Question newQuestion) {
+	        this.title = newQuestion.title;
+	        this.contents = newQuestion.contents;
+	    }
+	 
 	@Override
 	public int hashCode() {
 		final int prime =31;
