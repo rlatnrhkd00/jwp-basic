@@ -13,13 +13,23 @@ public class Answer {
 		this(0,writer,contents,new Date(),questionId);
 	}
 	
-	
 	public Answer(long answerId,String writer,String contents,Date createDate,long questionId) {
 		this.questionId = questionId;
 		this.writer = writer;
 		this.contents = contents;
 		this.createDate = createDate;
 		this.answerId = answerId;
+	}
+	public Answer(long answerId,String writer,String contents,Date createDate,long questionId,int countOfAnswer) {
+		this.questionId = questionId;
+		this.writer = writer;
+		this.contents = contents;
+		this.createDate = createDate;
+		this.answerId = answerId;
+		this.countOfAnswer=countOfAnswer;
+	}
+	public Answer(String writer,String contents,long questionId,int countOfAnswer) {
+		this(0,writer,contents,new Date(),questionId,countOfAnswer);
 	}
 	
 	public long getQuestionId(){
@@ -66,7 +76,9 @@ public class Answer {
 	 public void update(Answer newAnswer) {
 	       this.contents = newAnswer.contents;
 	    }
-
+	 public boolean isSameUser(User user) {
+	        return user.isSameUser(this.writer);
+	    }
 	@Override
 	public boolean equals(Object obj) {
 		if(this==obj) {

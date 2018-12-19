@@ -96,7 +96,7 @@
                           <input type="hidden" name="questionId" value="${question.questionId}"/>
                           
                           <div class ="form-group col-lg-4" style="padding-top:10px;">
-                          	<input class="form-control" id="writer" name="writer" placeholder="이름"/>
+                          	<input class="form-control" id="writer" name="writer" placeholder="이름" value=${user.userId}  >
           				  </div>
                               <div class="form-group col-lg-12">
                                   <textarea class="form-control" name="contents" id="contents" placeholder=""></textarea>
@@ -145,7 +145,7 @@
 </script>
 
 <script type="text/template" id="countTemplate">
-  <p class="qna-comment-count"><strong>{o}</strong>개의 의견</p>
+  <p class="qna-comment-count"><strong>{0}</strong>개의 의견</p>
 </script>
 <%@ include file="/include/footer.jspf" %>
 	</body>

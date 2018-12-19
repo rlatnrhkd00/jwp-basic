@@ -12,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import core.mvc.Controller;
 import next.dao.AnswerDao;
+import next.dao.QuestionDao;
+import next.dao.Result;
 import next.model.Answer;
 
 public class AddAnswerController implements Controller {
@@ -22,19 +24,21 @@ public class AddAnswerController implements Controller {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Long questionId = Long.parseLong(req.getParameter("questionId"));
 		log.debug("questionId : {}",questionId);
-		
+		QuestionDao questionDao = new QuestionDao();
+
 		Answer answer = new Answer(req.getParameter("writer"),req.getParameter("contents"),questionId);
 		log.debug("Answer : {}", answer);
 		AnswerDao answerDao = new AnswerDao();
 		Answer savedAnswer = answerDao.insert(answer);
+		questionDao.updatepCountOfAnswer(savedAnswer.getQuestionId());
 		log.debug("SavedAnswer : {}", savedAnswer);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
+		
 		resp.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.print(mapper.writeValueAsString(savedAnswer));	
-		
 		return null;
 	}
 

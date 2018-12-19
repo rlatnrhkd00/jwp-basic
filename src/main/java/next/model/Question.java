@@ -2,6 +2,10 @@ package next.model;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
+import next.controller.UserSessionUtils;
+
 public class Question {
 	private long questionId;
 	private String writer;
@@ -58,6 +62,10 @@ public class Question {
 	        this.contents = newQuestion.contents;
 	    }
 	 
+	 public boolean isSameUser(User user) {
+	        return user.isSameUser(this.writer);
+	    }
+	 
 	@Override
 	public int hashCode() {
 		final int prime =31;
@@ -66,7 +74,7 @@ public class Question {
 		result = prime*result+(int)(questionId^(questionId>>>32));
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(this==obj) {
@@ -87,14 +95,14 @@ public class Question {
 		
 	}
 	
-
+	
 	@Override
 	public String toString() {
 		return "Question [questionId="+questionId+",writer ="+writer+",title="+title+","
 				+ "contents="+contents+",createdDate"+createDate+",countOfAnswer="+countOfAnswer;
 	}
 
-	
+
 	
 	
 }

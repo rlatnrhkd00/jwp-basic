@@ -2,6 +2,7 @@ package next.controller;
 
 import javax.servlet.http.HttpSession;
 
+import next.model.Question;
 import next.model.User;
 
 public class UserSessionUtils {
@@ -33,4 +34,5 @@ public class UserSessionUtils {
 
         return user.isSameUser(getUserFromSession(session));
     }
+    
 }

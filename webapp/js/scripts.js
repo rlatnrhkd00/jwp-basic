@@ -59,6 +59,9 @@ alert("Here");
 					if(json.status){
 						deleteBtn.closest('article').remove();
 					}
+					var countTemplate = $("countTemplate").html();
+					var countTemplate2 = countTemplate.format(json.countOfAnswer);
+					$("#countAnswer").children().first().replaceWith(countTemplate2);
 				}
 	});
 }

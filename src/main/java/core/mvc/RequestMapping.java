@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import next.controller.HomeController;
 import next.controller.qna.AddAnswerController;
+import next.controller.qna.AddQuestionController;
 import next.controller.qna.CreateQuestionController;
 import next.controller.qna.DeleteAnswerController;
 import next.controller.qna.DeleteQuestionController;
@@ -44,6 +45,7 @@ public class RequestMapping {
         mappings.put("/qna/create", new CreateQuestionController());
         mappings.put("/qna/delete", new DeleteQuestionController());
         mappings.put("/qna/updateForm", new UpdateFormQuestionController());
+        mappings.put("/qna/addQuestion", new AddQuestionController());
         mappings.put("/qna/update", new UpdateQuestionController());
         mappings.put("/api/qna/addAnswer", new AddAnswerController());
         mappings.put("/api/qna/deleteAnswer", new DeleteAnswerController());
