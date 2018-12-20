@@ -96,7 +96,7 @@
                           <input type="hidden" name="questionId" value="${question.questionId}"/>
                           
                           <div class ="form-group col-lg-4" style="padding-top:10px;">
-                          	<input class="form-control" id="writer" name="writer" placeholder="이름" value=${user.userId}  >
+                          	<input type="hidden" class="form-control" id="writer" name="writer" placeholder="이름" value=${user.userId}  >
           				  </div>
                               <div class="form-group col-lg-12">
                                   <textarea class="form-control" name="contents" id="contents" placeholder=""></textarea>
