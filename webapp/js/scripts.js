@@ -17,15 +17,15 @@ function addAnswer(e){
 
 
 function onError(xhr, status){
-	alert("error");
+	alert("로그인을 하세요");
 }
 
 function onSuccess(json,status){
 	var answerTemplate = $("#answerTemplate").html();
-	var template = answerTemplate.format(json.writer,new Date(json.createdDate),json.contents,json.answerId,json.answerId,json.questionId);
+	var template = answerTemplate.format(json.writer,new Date(json.createDate),json.contents,json.answerId,json.answerId,json.questionId);
 	$(".qna-comment-slipp-articles").prepend(template);
 	
-	var countTemplate = $("countTemplate").html();
+	var countTemplate = $("#countTemplate").html();
 	var countTemplate2 = countTemplate.format(json.countOfAnswer);
 	$("#countAnswer").children().first().replaceWith(countTemplate2);
 }
@@ -41,27 +41,28 @@ String.prototype.format = function(){
 $(".qna-comment").on("click",".form-delete",deleteAnswer);
 
 function deleteAnswer(e){
-alert("Here");
+
 	e.preventDefault();
 	var deleteBtn = $(this);
 	var queryString = deleteBtn.closest("form").serialize();
-	alert("Here Too");
+
 	$.ajax({
 		type : 'POST',
 		url : '/api/qna/deleteAnswer',
 		data : queryString,
 		dateType : 'json',
 		error : function(xhr, status){
-				alert("error");
+				alert("다른사용자의 글을 삭제할수 없습니다.");
 				},
 		success : function(json, status){
-			alert("Here Three");
+		
 					if(json.status){
 						deleteBtn.closest('article').remove();
-					}
-					var countTemplate = $("countTemplate").html();
+						var countTemplate = $("#countTemplate").html();
 					var countTemplate2 = countTemplate.format(json.countOfAnswer);
 					$("#countAnswer").children().first().replaceWith(countTemplate2);
+					}
+					
 				}
 	});
 }

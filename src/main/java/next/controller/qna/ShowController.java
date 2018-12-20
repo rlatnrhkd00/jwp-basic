@@ -14,7 +14,7 @@ public class ShowController implements Controller {
 	private final static Logger log = LoggerFactory.getLogger(ShowController.class);
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		log.debug("questionId={}",req.getParameter("questionId"));
+		
 		Long questionId = Long.parseLong(req.getParameter("questionId"));
 		QuestionDao questionDao = new QuestionDao();
 		AnswerDao answerDao = new AnswerDao();

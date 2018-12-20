@@ -33,11 +33,16 @@ public class DeleteAnswerController implements Controller {
 
 		long answerId = Long.parseLong(req.getParameter("answerId"));
 		long questionId = Long.parseLong(req.getParameter("questionId"));
-        
-        Answer answer = answerDao.findById(answerId);
-        Question question = questionDao.findById(questionId); 
 		
-		log.debug("answerId : {}", answerId);
+		
+		 Answer answer = answerDao.findById(answerId);
+	        if (!answer.isSameUser(UserSessionUtils.getUserFromSession(req.getSession()))) {
+	            throw new IllegalStateException();
+	        }
+        
+        
+		
+		
 		
 		
 	
@@ -45,17 +50,19 @@ public class DeleteAnswerController implements Controller {
 		if(answer == null)
 			return null;
 		
-		log.debug("answerId : {}", answer.getAnswerId());
 		
 		answerDao.delete(answerId);
 		questionDao.updatemCountOfAnswer(answer.getQuestionId());
-
-		ObjectMapper mapper = new ObjectMapper();
+		Question question = questionDao.findById(questionId); 
 		
+		ObjectMapper mapper = new ObjectMapper();
+		Result result = new Result(true,"");
+		result.setCountOfAnswer(question.getCountOfAnswer());
 		resp.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
-		out.print(mapper.writeValueAsString(Result.Ok()));	
+		out.print(mapper.writeValueAsString(result));	
 		return null;
 	}
+
 
 }

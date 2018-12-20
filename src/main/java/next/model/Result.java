@@ -3,7 +3,16 @@ package next.model;
 public class Result {
 	private boolean status;
 	private String message;
+	int countOfAnswer;
 	
+	public int getCountOfAnswer() {
+		return countOfAnswer;
+	}
+
+	public void setCountOfAnswer(int countOfAnswer) {
+		this.countOfAnswer = countOfAnswer;
+	}
+
 	public Result(boolean status) {
 		this(status,"");
 	}
@@ -28,6 +37,6 @@ public class Result {
 		return this.message;
 	}
 	public String toString() {
-		return "Result [Status = "+status+", message="+message+"]";
+		return "Result [Status = "+status+", message="+message+",countOfAnswer="+countOfAnswer+"]";
 	}
 }

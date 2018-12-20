@@ -13,12 +13,12 @@ public class UpdateAnswerController implements Controller {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		AnswerDao answerDao = new AnswerDao();
-		System.out.println(req.getParameter("answerId"));
+	
         long answerId = Long.parseLong(req.getParameter("answerId"));
 
-		System.out.println("11111111111111111111");
+	
         Answer answer = answerDao.findById(answerId);
-        System.out.println("11111111111111111111");
+      
 
         Answer newAnswer = new Answer( answer.getWriter(), req.getParameter("contents"),answer.getAnswerId());
         answer.update(newAnswer);

@@ -3,11 +3,11 @@ package next.dao;
 public class Result {
 	private boolean status;
     private String message;
-
+    private int countOfAnswer;
     private Result(boolean status) {
         this(status, "");
     }
-
+   
     private Result(boolean status, String message) {
         this.status = status;
         this.message = message;
@@ -33,4 +33,12 @@ public class Result {
     public String toString() {
         return "Result [status=" + status + ", message=" + message + "]";
     }
+
+	public int getCountOfAnswer() {
+		return countOfAnswer;
+	}
+
+	public void setCountOfAnswer(int countOfAnswer) {
+		this.countOfAnswer = countOfAnswer;
+	}
 }

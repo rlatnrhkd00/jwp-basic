@@ -20,17 +20,7 @@ public class Answer {
 		this.createDate = createDate;
 		this.answerId = answerId;
 	}
-	public Answer(long answerId,String writer,String contents,Date createDate,long questionId,int countOfAnswer) {
-		this.questionId = questionId;
-		this.writer = writer;
-		this.contents = contents;
-		this.createDate = createDate;
-		this.answerId = answerId;
-		this.countOfAnswer=countOfAnswer;
-	}
-	public Answer(String writer,String contents,long questionId,int countOfAnswer) {
-		this(0,writer,contents,new Date(),questionId,countOfAnswer);
-	}
+
 	
 	public long getQuestionId(){
 		return questionId;
@@ -103,7 +93,7 @@ public class Answer {
 	@Override
 	public String toString() {
 		return "Answer [answerId="+answerId+",writer ="+writer+","
-				+ "contents="+contents+",createdDate"+createDate+",questionId="+questionId;
+				+ "contents="+contents+",createdDate="+createDate+",questionId="+questionId+",countOfAnswer="+countOfAnswer;
 	}
 
 	
